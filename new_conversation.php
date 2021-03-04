@@ -1,5 +1,5 @@
 <?php
-require "require/checklogin.php";
+require "require/checkAdminLogin.php";
 ?>
 <?php
 $error_message = false;
