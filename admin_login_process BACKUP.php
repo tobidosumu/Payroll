@@ -16,7 +16,7 @@ if(isset($_POST['email_address'])) {
         $admin_info = $admin->fetch_assoc();
 
         //compare password with the password the user typed
-        if($password == $admin_info['password'] ) {
+        if(password_verify($password, $admin_info['password']) ){
             //password is okay
             $_SESSION['email'] = $admin_info['email'];
             $_SESSION['admin_id'] = $admin_info['SN'];

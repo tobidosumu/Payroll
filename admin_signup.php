@@ -21,7 +21,7 @@ session_destroy();
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-signin" autocomplete="off" method="post" action="admin_login_process.php">
+<form class="form-signin" autocomplete="off" method="post" action="admin_signup_process.php">
     <h2>PAYROLL</h2>
     <h4 class="h4 mb-3 font-weight-normal">Admin Signup</h4>
 
