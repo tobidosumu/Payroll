@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(isset($_POST['submit_data'])){
+if (isset($_POST['submit_data'])) {
 
     //check if the is valid
     $username = $_POST['username'];
@@ -10,30 +10,30 @@ if(isset($_POST['submit_data'])){
 
     $errors = [];
 
-    if(empty($username)){
+    if(empty($username)) {
         $errors['username'] = "Please enter a username";
     }
     // this checks for empty username
 
-    if(empty($email)){
+    if (empty($email)) {
         $errors['email'] = "Please enter your email";
     }
     // this checks for empty email
 
-    if(empty($password)){
+    if (empty($password)) {
         $errors['password'] = "Please input your password";
     }
 
-    if(!(strlen($password) > 7  && strlen($password) < 30)){
+    if (!(strlen($password) > 7  && strlen($password) < 30)) {
         $errors['password'] = "password must be between 7 and 30 characters long";
     }
 
-    if(count($errors) > 0){
+    if (count($errors) > 0) {
         // we have an error
         $_SESSION['errors'] = $errors;
         $_SESSION['formdata'] = $_POST;
         header('location:admin_signup.php');
-    }else{
+    } else {
         //save data inside database
         require 'require/DB.php';
 
@@ -43,20 +43,17 @@ if(isset($_POST['submit_data'])){
 
         $query = $database->query($query_string);
 
-        if($query){ // $query == true
+        if ($query) { // $query == true
             //admin signup was successfull
             //redirects admin to admin_signup_success.php
             header('location:admin_signup_success.php');
-        }else{
+        } else {
             $_SESSION['errors'] = $errors;
             $_SESSION['formdata'] = $_POST;
             header('location:admin_signup.php?message=Unknown error, please try again..');
         }
-
     }
-
-}else{
+} else {
     header('location:admin_signup.php?message=Please complete the signup to continue');
 }
-
 ?>
