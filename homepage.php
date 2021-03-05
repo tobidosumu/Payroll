@@ -26,9 +26,9 @@ include "include/header.php";
         <div class="col-sm-12 col-lg-9 mt-3">
 
             <div class="jumbotron">
-                <h1>Welcome Back Admin <?php echo $admin_info['username'] ?></h1>
+                <h1>Welcome Back Admin <br> <?php echo strtoupper($admin_info['username']) ?></h1>
 
-                <p>You have No new Messages...</p>
+                <!-- <p>You have No new Messages...</p> -->
 
             </div>
 

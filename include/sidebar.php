@@ -5,6 +5,6 @@
         <li class="list-group-item"><a href="new_conversation.php">Allowances</a></li>
         <li class="list-group-item"><a href="#">Deductions</a></li>
         <li class="list-group-item"><a href="myconversation.php">Rank</a> </li>
-        <li class="list-group-item"><a href="logout.php">Log Out</a></li>
+        <li class="list-group-item"><a href="admin_logout.php">Log Out</a></li>
     </ul>
 </div>

@@ -39,7 +39,7 @@ if(isset($_POST['submit_data'])){
 
         // $password = password_hash($password,PASSWORD_DEFAULT);
 
-        $query_string = "INSERT INTO admin set `username`='$username',`email`='$email',`password`='$password)'";
+        $query_string = "INSERT INTO admin set `username`='$username',`email`='$email',`password`='$password'";
 
         $query = $database->query($query_string);
 

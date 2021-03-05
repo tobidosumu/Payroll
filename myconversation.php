@@ -1,5 +1,5 @@
 <?php
-require "require/checklogin.php";
+require "require/checkAdminLogin.php";
 ?>
 
 <!doctype html>
@@ -26,7 +26,7 @@ include "include/header.php";
         <div class="col-sm-12 col-lg-9 mt-3">
             <h3>Conversation(s)</h3>
             <?php
-             $conversations = $database->query("Select * from conversation where (user_id = $user_id OR recipient_id=$user_id)");
+             $conversations = $database->query("Select * from conversation where (admin_id = $admin_id OR recipient_id=$admin_id)");
              if($conversations->num_rows > 0) {
                  ?>
                  <div class="list-group">

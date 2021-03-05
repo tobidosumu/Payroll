@@ -18,7 +18,6 @@ if(isset($_SESSION['admin_id'])){
     }
 }
 
-
 function getStaff($admin_id,$database){
 
     $admin = $database->query("select * from admin where SN=$admin_id");
