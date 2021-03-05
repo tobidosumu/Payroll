@@ -1,5 +1,5 @@
 <?php
-class DB{
+class DB {
 
     var $host;
     var $username;
@@ -7,7 +7,7 @@ class DB{
     var $database;
     var $connection;
 
-    public function __construct($host,$username,$password,$database){
+    public function __construct($host,$username,$password,$database) {
         $this->host = $host;
         $this->username = $username;
         $this->password =$password;
@@ -18,12 +18,11 @@ class DB{
         return $this;
     }
 
-
-    public function query($query_string){
+    public function query($query_string) {
         return $this->connection->query($query_string);
     }
-
 }
 
+require './env.php';
 
-$database = new DB('localhost:3333', 'root', '', 'payroll');
+$database = new DB($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
