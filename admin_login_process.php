@@ -15,7 +15,7 @@ if (isset($_POST['email_address'])) {
     } else
         if ($admin->num_rows === 1) {
             $admin_info = $admin->fetch_assoc();
-            exit($admin_info['password']);
+            
             //compare password with the password the user typed
             if ($password == $admin_info['password']) {
                 //password is okay
