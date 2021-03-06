@@ -1,44 +1,32 @@
 <?php
 require "require/checkAdminLogin.php";
+require "classes/allowance.class.php"; 
+require "classes/allowance_validation.php";
 ?>
+
 <?php
 $error_message = false;
 if(isset($_POST['submit'])){
 //create new allowance
-    // if($_POST['allowance'] == $admin_info['allowance'] || $_POST['allowance'] == $admin_info['allowance']){
-    //     $error_message = "Allowance name already exist";
-    //   }else{
-    //     $admin_info = $_POST['allowance'];
-    //     $recipent = $database->query("select * from users where (username = '$user_email' OR email = '$user_email')");
-    //     if($recipent->num_rows ==0){
-    //         $error_message = "Recipient with ".$user_email." does not exist!..";
-    //     }else{
+      $allowanceValidation = new AllowanceValidation($_POST);
+      $error = $allowanceValidation->validateAllowanceForm();
+      
+      if ($error) {
+        $allowance = $error['allowance'];
+        header("Location: allowances_form.php?allowance={$allowance}");
+      }
 
-    //         $recipent_info = $recipent->fetch_assoc();
+      $allowance = $_POST['allowance'];
 
-    //         $recipent_id = $recipent_info['SN'];
+      $allowance1 = new Allowance($allowance);
 
-    //         $timestamp = time();
-    //         //create conversation
+      $allowances = Allowance::getAllowances();
+      $sql = "INSERT INTO allowances (allowance) VALUES ('".$_POST["allowance"]."')";
 
-    //         $conversation_string = "INSERT INTO conversation SET user_id=$user_id,recipient_id=$recipent_id,timestamp='$timestamp'";
+      $database->query($sql);
 
-    //         $database->query($conversation_string);
-
-    //         $conversation_id = $database->connection->insert_id;
-
-    //         $message = $_POST['message'];
-
-    //         $message_strung = "INSERT INTO message SET conversation_id=$conversation_id,sender_id=$user_id,message='$message',timestamp= $timestamp";
-
-    //         $database->query($message_strung);
-
-    //         header('location:new_conversation.php?message=Conversation has been created successfully!.');
-
-    //     }
-
-    // }
-
+      $allowance_id = $database->connection->insert_id;
+    
 }
 ?>
 
@@ -75,10 +63,14 @@ include "include/header.php";
     </tr>
   </thead>
   <tbody>
+
+  <?php foreach ($allowances as $allowance) { ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Housing</td>
+      <td scope="row">1</td>
+      <td><?php echo $allowance->getAllowance(); ?></td>
     </tr>
+  <?php } ?>
+
   </tbody>
 </table>
         </div>

@@ -1,45 +1,7 @@
 <?php
 require "require/checkAdminLogin.php";
-?>
-<?php
-$error_message = false;
-if(isset($_POST['submit'])){
-//create new conversation
-    if($_POST['user_email'] == $user_info['email'] || $_POST['user_email'] == $user_info['username']){
-        $error_message = "You can not send message to yourself!..";
-    }else{
-        $user_email = $_POST['user_email'];
-        $recipent = $database->query("select * from users where (username = '$user_email' OR email = '$user_email')");
-        if($recipent->num_rows ==0){
-            $error_message = "Recipient with ".$user_email." does not exist!..";
-        }else{
-
-            $recipent_info = $recipent->fetch_assoc();
-
-            $recipent_id = $recipent_info['SN'];
-
-            $timestamp = time();
-            //create conversation
-
-            $conversation_string = "INSERT INTO conversation SET user_id=$user_id,recipient_id=$recipent_id,timestamp='$timestamp'";
-
-            $database->query($conversation_string);
-
-            $conversation_id = $database->connection->insert_id;
-
-            $message = $_POST['message'];
-
-            $message_strung = "INSERT INTO message SET conversation_id=$conversation_id,sender_id=$user_id,message='$message',timestamp= $timestamp";
-
-            $database->query($message_strung);
-
-            header('location:new_conversation.php?message=Conversation has been created successfully!.');
-
-        }
-
-    }
-
-}
+require "classes/allowance.class.php"; 
+require "classes/allowance_validation.php";
 ?>
 
 <!doctype html>
@@ -59,6 +21,7 @@ if(isset($_POST['submit'])){
 <?php
 include "include/header.php";
 ?>
+
 <div class="container-fluid">
     <div class="row">
         <?php
@@ -71,18 +34,12 @@ include "include/header.php";
                 <input type="text" class="form-control-plaintext" name="staticEmail2" id="staticEmail2" value="Create New Allowance">
             </div>
             <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Allowances</label>
-                <!-- <input type="text" class="form-control" id="allowance" placeholder="Enter Allowance Name"> -->
-                <input type="text" id="inputText" value="<?php if(isset( $formdata['allowance'])) echo $formdata['allowance'] ?>" name="allowance" autocomplete="off" class="form-control mt-4 mb-4" placeholder="allowance" autofocus>
-    <?php
-    if(isset($errors['allowance'])) {
-        ?>
-        <span class="d-block" style="color:red; font-size: 10px;"><?php echo $errors['allowance'];  ?></span>
-        <?php
-    }
-    ?>
+                <label for="inputPassword2" class="sr-only">Allowances</label> 
+                <p><?php echo $_GET['allowance'] ?? ''; ?></p>
+                <input type="text" name="allowance" id="inputText" class="form-control mt-4 mb-4" placeholder="allowance" autofocus>
             </div>
-            <button class="btn btn-primary mb-2" name="submit_data" value="submit button" type="submit">Add Allowance</button>
+
+            <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Add Allowance</button>
         </form>
 </div>
 

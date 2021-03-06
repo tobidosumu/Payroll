@@ -11,7 +11,7 @@ $admin_info = [];
 
 if(isset($_SESSION['admin_id'])){
     $admin_id = $_SESSION['admin_id'];
-    //query database to get user's information
+    //query database to get admin's information
     $admin = $database->query("select * from admin where SN=$admin_id");
     if($admin->num_rows === 1){
         $admin_info = $admin->fetch_assoc();
