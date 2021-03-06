@@ -49,9 +49,10 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>New Conversation</title>
+    <title>Allowance</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 
@@ -63,34 +64,27 @@ include "include/header.php";
         <?php
         include "include/sidebar.php";
         ?>
-        <div class="col-sm-12 col-lg-9 mt-3">
-            <h3>New Conversation</h3>
-                <form action="" method="post">
-                    <span class="d-block" style="color:red;font-size: 10px;"><?php echo $error_message; ?></span>
-                    <?php
-                    if(isset($_GET['message'])) {
-                        ?>
-                        <span class="d-block" style="color:green;font-size: 15px;"><?php echo $_GET['message']; ?></span>
-                        <?php
-                    }
-                    ?>
-                    <div class="form-group">
-                        <label>Username or Email Address</label>
-                        <input type="text" required name="user_email" placeholder="Enter Email address or Username" class="form-control form-control-sm"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea class="form-control" required placeholder="Message" style="height: 120px;" name="message"></textarea>
-                    </div>
-
-                    <button class="btn btn-primary btn-lg" name="submit" value="message" type="submit">Send Message</button>
-
-                </form>
-        </div>
-    </div>
+        <div class="col-sm-12 col-lg-9 mt-5">
+        <form class="form-inline" action="allowances.php" method="POST">
+            <div class="form-group mb-2">
+                <label for="staticEmail2" class="sr-only">Allowances</label>
+                <input type="text" class="form-control-plaintext" name="staticEmail2" id="staticEmail2" value="Create New Allowance">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Allowances</label>
+                <!-- <input type="text" class="form-control" id="allowance" placeholder="Enter Allowance Name"> -->
+                <input type="text" id="inputText" value="<?php if(isset( $formdata['allowance'])) echo $formdata['allowance'] ?>" name="allowance" autocomplete="off" class="form-control mt-4 mb-4" placeholder="allowance" autofocus>
+    <?php
+    if(isset($errors['allowance'])) {
+        ?>
+        <span class="d-block" style="color:red; font-size: 10px;"><?php echo $errors['allowance'];  ?></span>
+        <?php
+    }
+    ?>
+            </div>
+            <button class="btn btn-primary mb-2" name="submit_data" value="submit button" type="submit">Add Allowance</button>
+        </form>
 </div>
-
 
 </body>
 </html>
