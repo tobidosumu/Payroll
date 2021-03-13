@@ -2,32 +2,31 @@
 require "require/checkAdminLogin.php";
 require "classes/allowance.class.php"; 
 require "classes/allowance_validation.php";
-?>
 
-<?php
+  // $rent = new Allowance('rent'); /* example of an object i.e an instance of the class Allowance*/
+  // $rent->getSerialNum(); /* picking up property from an object. E.g. of instance method */
+  // $transport = new Allowance('transport');
+  // $transport->getSerialNum();
+  // // Allowance::getSerialNum(); 
+  // Allowance::getAllowances(); /* How to call static methods */
+
 $error_message = false;
 if(isset($_POST['submit'])){
+ 
 //create new allowance
       $allowanceValidation = new AllowanceValidation($_POST);
-      $error = $allowanceValidation->validateAllowanceForm();
+      $errors = $allowanceValidation->validateAllowanceForm();
       
-      if ($error) {
-        $allowance = $error['allowance'];
+      if ($errors) {
+        $allowance = $errors['allowance'];
         header("Location: allowances_form.php?allowance={$allowance}");
       }
 
       $allowance = $_POST['allowance'];
 
-      $allowance1 = new Allowance($allowance);
+      Allowance::createAllowance($allowance);
 
-      $allowances = Allowance::getAllowances();
-      $sql = "INSERT INTO allowances (allowance) VALUES ('".$_POST["allowance"]."')";
-
-      $database->query($sql);
-
-      $allowance_id = $database->connection->insert_id;
-    
-}
+    }
 ?>
 
 <!doctype html>
@@ -44,9 +43,6 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 
-<?php
-include "include/header.php";
-?>
 <div class="container-fluid">
     <div class="row">
         <?php
@@ -56,23 +52,29 @@ include "include/header.php";
             <h3>Allowances</h3>
             <a href="allowances_form.php" type="submit" class="btn btn-success margin_top">Add Allowance</a>
             <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">SN</th>
-      <th scope="col">Name</th>
-    </tr>
-  </thead>
-  <tbody>
+              <thead>
+                <tr>
+                  <th scope="col">SN</th>
+                  <th scope="col">Name</th>
+                </tr>
+              </thead>
+              <tbody>
 
-  <?php foreach ($allowances as $allowance) { ?>
-    <tr>
-      <td scope="row">1</td>
-      <td><?php echo $allowance->getAllowance(); ?></td>
-    </tr>
-  <?php } ?>
+              <?php
+                  Allowance::updateAllowance('Rent', 'Health');
 
-  </tbody>
-</table>
+                  $allowances = Allowance::getAllowances();
+                    foreach($allowances as $allowance) {
+                      // var_dump($allowance);
+                       echo "<tr>";
+                       echo "<td>". $allowance->getSerialNum(). "</td>";
+                       echo "<td>". $allowance->getAllowanceName(). "</td>";
+                       echo "</tr>";
+                    }
+              ?>
+                    
+              </tbody>
+            </table>
         </div>
     </div>
 </div>

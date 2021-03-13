@@ -8,7 +8,7 @@ if (isset($_POST['email_address'])) {
     $email = $_POST['email_address'];
     $password = $_POST['password'];
 
-    $admin = $database->query("select * from admin where email='$email'");
+    $admin = $db_connect->query("select * from admin where email='$email'");
 
     if ($admin->num_rows === 0) {
         header('location:index.php?message=Invalid Email and Password Combination');

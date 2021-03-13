@@ -25,4 +25,4 @@ class DB {
 
 require './env.php';
 
-$database = new DB($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
+$db_connect = new DB($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
