@@ -36,7 +36,9 @@ include "include/header.php";
             <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">Allowances</label> 
                 <p><?php echo $_GET['new_allowance_name'] ?? ''; ?></p>
-                <input type="text" name="new_allowance_name" id="inputText" class="form-control mt-4 mb-4" placeholder="Enter new allowance" autofocus>
+                <input type="hidden" name="old_allowance_name" value="<?php echo $_GET['allowance_name'] ?>"/>
+                <input type="hidden" name="sn" value="<?php echo $_GET['sn'] ?>"/>
+                <input type="text" name="new_allowance_name" value="<?php echo $_GET['allowance_name'] ?>" id="inputText" class="form-control mt-4 mb-4" placeholder="Enter new allowance" autofocus>
             </div>
 
             <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Update Allowance</button>
