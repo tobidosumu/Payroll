@@ -1,6 +1,4 @@
-<?php
-require "require/checkAdminLogin.php";
-?>
+<?php require "require/checkAdminLogin.php";?>
 
 <!doctype html>
 <html lang="en">

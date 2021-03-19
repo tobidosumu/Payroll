@@ -50,25 +50,28 @@ if(isset($_POST['submit'])){
         ?>
         <div class="col-sm-12 col-lg-9 mt-3">
             <h3>Allowances</h3>
-            <a href="allowances_form.php" type="submit" class="btn btn-success margin_top">Add Allowance</a>
+            <a href="allowances_form.php" type="submit" 
+               class="btn btn-success margin_top">Add Allowance</a>
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">SN</th>
                   <th scope="col">Name</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
 
               <?php
-                  Allowance::updateAllowance('Rent', 'Health');
-
                   $allowances = Allowance::getAllowances();
                     foreach($allowances as $allowance) {
-                      // var_dump($allowance);
                        echo "<tr>";
                        echo "<td>". $allowance->getSerialNum(). "</td>";
                        echo "<td>". $allowance->getAllowanceName(). "</td>";
+                       echo "<td>". "<a href='update_allowance_form.php' type='submit' 
+                                      name='allowance_name' class='btn btn-info margin_top mt-0'>
+                                      Update Allowance </a>" 
+                            ."</td>";
                        echo "</tr>";
                     }
               ?>

@@ -20,7 +20,7 @@ if (isset($_POST['email_address'])) {
             if ($password == $admin_info['password']) {
                 //password is okay
                 $_SESSION['email'] = $admin_info['email'];
-                $_SESSION['admin_id'] = $admin_info['SN'];
+                $_SESSION['admin_id'] = $admin_info['id'];
                 $_SESSION['is_login'] = true;
                 header("location:homepage.php");
             } else{

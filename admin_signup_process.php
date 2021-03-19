@@ -41,7 +41,7 @@ if (isset($_POST['submit_data'])) {
 
         $query_string = "INSERT INTO admin set `username`='$username',`email`='$email',`password`='$password'";
 
-        $query = $database->query($query_string);
+        $query = $db_connect->query($query_string);
 
         if ($query) { // $query == true
             //admin signup was successfull

@@ -1,6 +1,5 @@
 <?php
 class DB {
-
     var $host;
     var $username;
     var $password;
@@ -10,7 +9,7 @@ class DB {
     public function __construct($host,$username,$password,$database) {
         $this->host = $host;
         $this->username = $username;
-        $this->password =$password;
+        $this->password = $password;
         $this->database = $database;
         //connect to the database with parameter
         $this->connection = new mysqli($this->host,$this->username,$password,$this->database);

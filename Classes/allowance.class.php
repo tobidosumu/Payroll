@@ -37,9 +37,12 @@
             }
         }
 
-        public static function updateAllowance() {
-            $updated_allowance = self::$db_connect->query("UPDATE allowances 
-            SET allowance_name='Rent' WHERE allowance_name='Health'");
+        //allowance name
+        public static function updateAllowance($old_allowance_name, $new_allowance_name) {
+            $query = "UPDATE allowances 
+                    SET allowance_name='$new_allowance_name' 
+                    WHERE allowance_name='$old_allowance_name'";
+            $updated_allowance = self::$db_connect->query($query);
         } 
 
         public static function getAllowances() {
