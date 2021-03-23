@@ -5,6 +5,7 @@
         <li class="list-group-item"><a href="allowances.php">Allowances</a></li>
         <li class="list-group-item"><a href="deductions.php">Deductions</a></li>
         <li class="list-group-item"><a href="ranks.php">Ranks</a> </li>
+        <li class="list-group-item"><a href="staffs.php">Staff</a> </li>
         <li class="list-group-item"><a href="admin_logout.php">Log Out</a></li>
     </ul>
 </div>
