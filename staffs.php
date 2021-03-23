@@ -61,6 +61,9 @@ if(isset($_POST['submit'])){
                        echo "<tr>";
                        echo "<td>". $staff->getSerialNum(). "</td>";
                        echo "<td>". $staff->getStaffName(). "</td>";
+                       echo "<td>". "<a href='update_staff_form.php?staff_name={$staff->getStaffName()}&&sn={$staff->getSerialNum()}' 
+                                      class='btn btn-info margin_top mt-0'> Update Staff </a>" 
+                            ."</td>";
                        echo "</tr>";
                     }
               ?>
