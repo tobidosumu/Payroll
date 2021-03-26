@@ -7,22 +7,33 @@
         //properties
         public static $db_connect;
         private $sn;
-        private $staff_name;
+        private $surname;
+        private $first_name;
+        private $phone_no;
+        private $bank_name;
+        private $account_no;
         private static $staffs = []; /* Lines 5-6 must match the names on DB */
 
         //methods
-        public function __construct($staff_name) {
+        public function __construct($surname, $first_name, $phone_no, $bank_name, $account_no) {
             $this->sn = count(self::$staffs)+1; /* +1 is to eliminate the zero */
-            $this->staff_name = $staff_name;
+            $this->surname = $surname;
+            $this->first_name = $first_name;
+            $this->phone_no = $phone_no;
+            $this->bank_name = $bank_name;
+            $this->account_no = $account_no;
             self::$staffs[] = $this; /* self = class, $this = object */
         }
 
-        /* Static method e.g. Allowance::getAllowanceName() */
-
         //-------getters--------
-         public static function createStaff($staff){
-            $insert_staff = self::$db_connect->query("INSERT INTO staffs 
-            (staff_name) VALUES ('$staff')");
+         public static function createStaff($staffs){
+             $newStaff = [];
+             foreach ($staffs as $key => $staff) {
+                 $newStaff[] = $key. "=" . "'" .$staff. "'"; 
+             }
+             $newStaff = implode(",", $newStaff);
+
+            $insert_staff = self::$db_connect->query("INSERT INTO staffs SET $newStaff");
             if ($insert_staff === true){
                 return $staff;
             }
@@ -30,17 +41,18 @@
 
         private static function fetchStaffs() {
             $result = self::$db_connect->query("SELECT * from staffs");
+            
             if ($result->num_rows > 0) { 
                 foreach($result as $staff) {
-                   new Staff($staff['staff_name']);
+                   new Staff($staff['surname'], $staff['first_name'], $staff['phone_no'], $staff['bank_name'], $staff['account_no']);
                 } 
             }
         }
-
-        //allowance name
-        public static function updateStaff($sn, $new_staff_name) {
+        
+        //staff
+        public static function updateStaff($sn, $new_surname, $new_first_name, $new_phone_no, $new_bank_name, $new_account_no) {
             $query = "UPDATE staffs 
-                    SET staff_name='$new_staff_name' 
+                    SET surname='$new_surname', first_name='$new_first_name', phone_no='$new_phone_no' bank_name='$new_bank_name' account_no='$new_account_no' 
                     WHERE sn='$sn'";
             self::$db_connect->query($query);
         } 
@@ -54,8 +66,24 @@
             return $this->sn;
         }
 
-        public function getStaffName() { /*methods are written in camel case*/
-            return $this->staff_name;
+        public function getSurname() { /*methods are written in camel case*/
+            return $this->surname;
+        }
+
+        public function getFirst_name() {
+            return $this->first_name;
+        }
+
+        public function getPhone_no() {
+            return $this->phone_no;
+        }
+
+        public function getBank_name() {
+            return $this->bank_name;
+        }
+
+        public function getAccount_no() {
+            return $this->account_no;
         }
 
         //---------setters-------------

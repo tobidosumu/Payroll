@@ -27,22 +27,28 @@ include "include/header.php";
         <?php
         include "include/sidebar.php";
         ?>
-        <div class="col-sm-12 col-lg-9 mt-5">
-        <form class="form-inline" action="update_staff_process.php" method="POST">
-            <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">Staffs</label>
-                <input type="text" class="form-control-plaintext" name="staticEmail2" id="staticEmail2" value="Update Staff">
+        <div class="col-sm-12 col-lg-4 mt-5">
+        <form action="update_staff_process.php" method="POST"><!---start--->
+            <div class="form-group">
+                <label>Surname</label>
+                <p><?php echo $_GET['new_surname'] ?? ''; ?></p>
+                <input type="text" name="old_surname" class="form-control" id="inputText" placeholder="Enter surname">
+                <label class="mt-3">First Name</label>
+                <p><?php echo $_GET['new_first_name'] ?? ''; ?></p>
+                <input type="text" name="old_first_name" class="form-control" id="inputText" placeholder="Enter first name">
+                <label class="mt-3">Phone Number</label>
+                <p><?php echo $_GET['new_phone_no'] ?? ''; ?></p>
+                <input type="number" name="old_phone_no" class="form-control" id="inputText" placeholder="Enter phone number">
+                <label class="mt-3">Bank Name</label>
+                <p><?php echo $_GET['new_bank_name'] ?? ''; ?></p>
+                <input type="text" name="old_bank_name" class="form-control" id="inputText" placeholder="Enter bank name">
+                <label class="mt-3">Account Number</label>
+                <p><?php echo $_GET['new_account_no'] ?? ''; ?></p>
+                <input type="number" name="old_account_no" class="form-control" id="inputText" placeholder="Enter account number">
             </div>
-            <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Staffs</label> 
-                <p><?php echo $_GET['new_staff_name'] ?? ''; ?></p>
-                <input type="hidden" name="old_staff_name" value="<?php echo $_GET['staff_name'] ?>"/>
-                <input type="hidden" name="sn" value="<?php echo $_GET['sn'] ?>"/>
-                <input type="text" name="new_staff_name" value="<?php echo $_GET['staff_name'] ?>" id="inputText" class="form-control mt-4 mb-4" placeholder="Enter new staff" autofocus>
-            </div>
-
-            <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Update Staff</button>
-        </form>
+            
+            <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Add Staff</button>
+        </form><!---end--->
 </div>
 
 </body>

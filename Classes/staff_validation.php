@@ -13,7 +13,7 @@
         public function validateStaffForm() {
             foreach(self::$fields as $field) {
                 if(!array_key_exists($field, $this->data)) {
-                    $this->addError($field, "$field not present in data");
+                    // $this->addError($field, "$field not present in data");
                 }
             }
             $this->staffValid();
@@ -22,15 +22,15 @@
 
         //name method
         public function staffValid() {
-            $val =  trim($this->data['staff']);
+            // $val =  trim($this->data['staff']);
 
-            if (empty($val)) {
-                $this->addError('staff', 'This field cannot be empty.');
-            } else {
-                if(strlen(!filter_var($val, FILTER_SANITIZE_STRING)) >= 2) {
-                    $this->addError('staff', 'staff must be at least 2 chars long.');
-                }
-            }
+            // if (empty($val)) {
+            //     // $this->addError('staff', 'This field cannot be empty.');
+            // } else {
+            //     if(strlen(!filter_var($val, FILTER_SANITIZE_STRING)) >= 2) {
+            //         $this->addError('staff', 'staff must be at least 2 chars long.');
+            //     }
+            // }
         }
 
         private function addError($key, $val) {

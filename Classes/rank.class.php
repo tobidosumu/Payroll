@@ -37,7 +37,7 @@
             }
         }
 
-        //allowance name
+        //rank name
         public static function updateRank($sn, $new_rank_name) {
             $query = "UPDATE ranks 
                     SET rank_name='$new_rank_name' 

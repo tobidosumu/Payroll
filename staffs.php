@@ -7,6 +7,7 @@ $error_message = false;
 if(isset($_POST['submit'])){
  
 //create new staff
+      unset($_POST['submit']);
       $staffValidation = new StaffValidation($_POST);
       $errors = $staffValidation->validateStaffForm();
       
@@ -15,11 +16,12 @@ if(isset($_POST['submit'])){
         header("Location: staffs_form.php?staff={$staff}");
       }
 
-      $staff = $_POST['staff'];
-
+      $staff = $_POST;
+      
       Staff::createStaff($staff);
 
     }
+    
 ?>
 
 <!doctype html>
@@ -49,7 +51,11 @@ if(isset($_POST['submit'])){
               <thead>
                 <tr>
                   <th scope="col">SN</th>
-                  <th scope="col">Name</th>
+                  <th scope="col">Surname</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">Bank Name</th>
+                  <th scope="col">Account Number</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -60,8 +66,12 @@ if(isset($_POST['submit'])){
                     foreach($staffs as $staff) {
                        echo "<tr>";
                        echo "<td>". $staff->getSerialNum(). "</td>";
-                       echo "<td>". $staff->getStaffName(). "</td>";
-                       echo "<td>". "<a href='update_staff_form.php?staff_name={$staff->getStaffName()}&&sn={$staff->getSerialNum()}' 
+                       echo "<td>". $staff->getSurname(). "</td>";
+                       echo "<td>". $staff->getFirst_name(). "</td>";
+                       echo "<td>". $staff->getPhone_no(). "</td>";
+                       echo "<td>". $staff->getBank_name(). "</td>";
+                       echo "<td>". $staff->getAccount_no(). "</td>";
+                       echo "<td>". "<a href='update_staff_form.php?staff_surname={$staff->getSurname()}staff_first_name={$staff->getFirst_name()}staff_phone_no={$staff->getPhone_no()}staff_bank_name={$staff->getBank_name()}staff_account_no={$staff->getAccount_no()}&&sn={$staff->getSerialNum()}' 
                                       class='btn btn-info margin_top mt-0'> Update Staff </a>" 
                             ."</td>";
                        echo "</tr>";

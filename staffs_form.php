@@ -11,7 +11,7 @@ require "classes/staff_validation.php";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Allowance</title>
+    <title>Staff Info</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -24,23 +24,32 @@ include "include/header.php";
 
 <div class="container-fluid">
     <div class="row">
-        <?php
-        include "include/sidebar.php";
-        ?>
-        <div class="col-sm-12 col-lg-9 mt-5">
-        <form class="form-inline" action="staffs.php" method="POST">
-            <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">Staffs</label>
-                <input type="text" class="form-control-plaintext" name="staticEmail2" id="staticEmail2" value="Create New Staff">
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Staffs</label> 
-                <p><?php echo $_GET['staff'] ?? ''; ?></p>
-                <input type="text" name="staff" id="inputText" class="form-control mt-4 mb-4" placeholder="staff" autofocus>
-            </div>
+        <?php include "include/sidebar.php";?>
+        <div class="col-sm-12 col-lg-4 mt-6 pt-4">
+        <h4 class="mb-3">Staff Info</h4>
 
+        <form action="staffs.php" method="POST"><!---start--->
+            <div class="form-group">
+                <label>Surname</label>
+                <p><?php echo $_GET['surname'] ?? ''; ?></p>
+                <input type="text" name="surname" class="form-control" id="inputText" placeholder="Enter surname">
+                <label class="mt-3">First Name</label>
+                <p><?php echo $_GET['first_name'] ?? ''; ?></p>
+                <input type="text" name="first_name" class="form-control" id="inputText" placeholder="Enter first name">
+                <label class="mt-3">Phone Number</label>
+                <p><?php echo $_GET['phone_no'] ?? ''; ?></p>
+                <input type="number" name="phone_no" class="form-control" id="inputText" placeholder="Enter phone number">
+                <label class="mt-3">Bank Name</label>
+                <p><?php echo $_GET['bank_name'] ?? ''; ?></p>
+                <input type="text" name="bank_name" class="form-control" id="inputText" placeholder="Enter bank name">
+                <label class="mt-3">Account Number</label>
+                <p><?php echo $_GET['account_no'] ?? ''; ?></p>
+                <input type="number" name="account_no" class="form-control" id="inputText" placeholder="Enter account number">
+            </div>
+            
             <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Add Staff</button>
-        </form>
+        </form><!---end--->
+
 </div>
 
 </body>

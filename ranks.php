@@ -3,17 +3,10 @@ require "require/checkAdminLogin.php";
 require "classes/rank.class.php"; 
 require "classes/rank_validation.php";
 
-  // $rent = new Allowance('rent'); /* example of an object i.e an instance of the class Allowance*/
-  // $rent->getSerialNum(); /* picking up property from an object. E.g. of instance method */
-  // $transport = new Allowance('transport');
-  // $transport->getSerialNum();
-  // // Allowance::getSerialNum(); 
-  // Allowance::getAllowances(); /* How to call static methods */
-
 $error_message = false;
 if(isset($_POST['submit'])){
  
-//create new allowance
+//create new rank
       $rankValidation = new RankValidation($_POST);
       $errors = $rankValidation->validateRankForm();
       
