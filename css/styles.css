@@ -2,3 +2,9 @@
     margin-top: -50px;
     float: right !important;
 }
+
+a.btn.btn-success {
+   
+    /* margin-right: -350px !important; */
+    float: right !important;
+}

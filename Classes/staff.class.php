@@ -37,8 +37,9 @@
             if ($insert_staff === true){
                 return $staff;
             }
+           
         }
-
+        
         private static function fetchStaffs() {
             $result = self::$db_connect->query("SELECT * from staffs");
             
@@ -50,12 +51,27 @@
         }
         
         //staff
-        public static function updateStaff($sn, $new_surname, $new_first_name, $new_phone_no, $new_bank_name, $new_account_no) {
-            $query = "UPDATE staffs 
-                    SET surname='$new_surname', first_name='$new_first_name', phone_no='$new_phone_no' bank_name='$new_bank_name' account_no='$new_account_no' 
-                    WHERE sn='$sn'";
+        public static function updateStaff($sn, $staffs) {
+            
+             foreach ($staffs as $key => $staff) {
+                 $updatedStaff[] = $key. "=" . "'" .$staff. "'"; 
+             }
+             $updatedStaff = implode(",", $updatedStaff);
+
+            $query = "UPDATE staffs SET $updatedStaff WHERE sn='$sn'";
             self::$db_connect->query($query);
         } 
+
+        public static function getStaff($sn) {
+            $query = "SELECT * from staffs WHERE sn = $sn";
+
+            $result = self::$db_connect->query($query);
+            if ($result->num_rows > 0) {
+                foreach($result as $staff) 
+                 return new Staff($staff['surname'], $staff['first_name'], $staff['phone_no'], $staff['bank_name'], $staff['account_no']);
+                
+            }
+        }
 
         public static function getStaffs() {
             self::fetchStaffs();

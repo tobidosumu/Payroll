@@ -17,7 +17,6 @@ if(isset($_POST['submit'])){
       }
 
       $staff = $_POST;
-      
       Staff::createStaff($staff);
 
     }
@@ -40,13 +39,11 @@ if(isset($_POST['submit'])){
 
 <div class="container-fluid">
     <div class="row">
-        <?php
-        include "include/sidebar.php";
-        ?>
+        <?php include "include/sidebar.php" ?>
         <div class="col-sm-12 col-lg-9 mt-3">
             <h3>Staffs</h3>
             <a href="staffs_form.php" type="submit" 
-               class="btn btn-success margin_top">Add Staff</a>
+               class="btn btn-success margin_top mr-5">Add Staff</a>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -71,8 +68,8 @@ if(isset($_POST['submit'])){
                        echo "<td>". $staff->getPhone_no(). "</td>";
                        echo "<td>". $staff->getBank_name(). "</td>";
                        echo "<td>". $staff->getAccount_no(). "</td>";
-                       echo "<td>". "<a href='update_staff_form.php?staff_surname={$staff->getSurname()}staff_first_name={$staff->getFirst_name()}staff_phone_no={$staff->getPhone_no()}staff_bank_name={$staff->getBank_name()}staff_account_no={$staff->getAccount_no()}&&sn={$staff->getSerialNum()}' 
-                                      class='btn btn-info margin_top mt-0'> Update Staff </a>" 
+                       echo "<td>". "<a href='update_staff_form.php?sn={$staff->getSerialNum()}' 
+                                      class='btn btn-info mt-0'> Update Staff </a>" 
                             ."</td>";
                        echo "</tr>";
                     }

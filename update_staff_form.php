@@ -2,6 +2,16 @@
 require "require/checkAdminLogin.php";
 require "classes/staff.class.php"; 
 require "classes/staff_validation.php";
+
+$sn = $_GET['sn'];
+if(isset($_POST['submit'])){
+    unset($_POST['submit']);
+    Staff::updateStaff($sn, $_POST);
+    header("Location: staffs.php?sn={$sn}");
+}
+
+$staff = Staff::getStaff($sn);
+
 ?>
 
 <!doctype html>
@@ -18,35 +28,25 @@ require "classes/staff_validation.php";
 </head>
 <body>
 
-<?php
-include "include/header.php";
-?>
+<?php include "include/header.php" ?>
 
 <div class="container-fluid">
     <div class="row">
-        <?php
-        include "include/sidebar.php";
-        ?>
+        <?php include "include/sidebar.php" ?>
         <div class="col-sm-12 col-lg-4 mt-5">
-        <form action="update_staff_process.php" method="POST"><!---start--->
+        <form action="" method="POST"><!---start--->
             <div class="form-group">
                 <label>Surname</label>
-                <p><?php echo $_GET['new_surname'] ?? ''; ?></p>
-                <input type="text" name="old_surname" class="form-control" id="inputText" placeholder="Enter surname">
+                <input type="text" name="surname" value="<?php echo $staff->getSurname() ?>" class="form-control" id="inputText" placeholder="Enter surname">
                 <label class="mt-3">First Name</label>
-                <p><?php echo $_GET['new_first_name'] ?? ''; ?></p>
-                <input type="text" name="old_first_name" class="form-control" id="inputText" placeholder="Enter first name">
+                <input type="text" name="first_name" value="<?php echo $staff->getFirst_name() ?>" class="form-control" id="inputText" placeholder="Enter first name">
                 <label class="mt-3">Phone Number</label>
-                <p><?php echo $_GET['new_phone_no'] ?? ''; ?></p>
-                <input type="number" name="old_phone_no" class="form-control" id="inputText" placeholder="Enter phone number">
+                <input type="number" name="phone_no" value="<?php echo $staff->getPhone_no() ?>" class="form-control" id="inputText" placeholder="Enter phone number">
                 <label class="mt-3">Bank Name</label>
-                <p><?php echo $_GET['new_bank_name'] ?? ''; ?></p>
-                <input type="text" name="old_bank_name" class="form-control" id="inputText" placeholder="Enter bank name">
+                <input type="text" name="bank_name" value="<?php echo $staff->getBank_name() ?>" class="form-control" id="inputText" placeholder="Enter bank name">
                 <label class="mt-3">Account Number</label>
-                <p><?php echo $_GET['new_account_no'] ?? ''; ?></p>
-                <input type="number" name="old_account_no" class="form-control" id="inputText" placeholder="Enter account number">
+                <input type="number" name="account_no" value="<?php echo $staff->getAccount_no() ?>" class="form-control" id="inputText" placeholder="Enter account number">
             </div>
-            
             <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Add Staff</button>
         </form><!---end--->
 </div>

@@ -1,7 +1,6 @@
 <?php
 include 'classes/staff.class.php';
 
-
 if(isset($_POST['submit'])){
 
     $sn = $_POST['sn'];
@@ -12,7 +11,7 @@ if(isset($_POST['submit'])){
     $new_first_name = $_POST['new_account_no'];
 
     Staff::updateStaff($sn, $new_surname, $new_first_name, $new_phone_no, $new_bank_name, $new_account_no);
-    header("Location: staffs.php?new_surname={$new_surname}&&new_first_name={$new_first_name}&&new_phone_no={$new_phone_no}&&new_bank_name={$new_bank_name}&&new_account_no={$new_account_no}");
+    header("Location: staffs.php?sn={$sn}");
 }
 
 ?>
