@@ -47,7 +47,17 @@ $staff = Staff::getStaff($sn);
                 <label class="mt-3">Account Number</label>
                 <input type="number" name="account_no" value="<?php echo $staff->getAccount_no() ?>" class="form-control" id="inputText" placeholder="Enter account number">
             </div>
-            <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Add Staff</button>
+            <div class="dropdown mt-4 mb-4">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Management Staff</a>
+                    <a class="dropdown-item" href="#">Permanent Staff</a>
+                    <a class="dropdown-item" href="#">Casual Staff</a>
+                </div>
+            </div>
+            <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Update Staff</button>
         </form><!---end--->
 </div>
 

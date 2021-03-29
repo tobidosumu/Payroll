@@ -45,6 +45,16 @@ include "include/header.php";
                 <label class="mt-3">Account Number</label>
                 <p><?php echo $_GET['account_no'] ?? ''; ?></p>
                 <input type="number" name="account_no" class="form-control" id="inputText" placeholder="Enter account number">
+                <div class="dropdown mt-3 mb-4">
+                    <button class="btn btn-secondary dropdown-toggle mt-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Rank
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Management Staff</a>
+                        <a class="dropdown-item" href="#">Permanent Staff</a>
+                        <a class="dropdown-item" href="#">Casual Staff</a>
+                    </div>
+                </div>
             </div>
             
             <button class="btn btn-primary mb-2" name="submit" value="submit" type="submit">Add Staff</button>

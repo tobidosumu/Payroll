@@ -7,6 +7,7 @@
         //properties
         public static $db_connect;
         private $sn;
+        private $rank_id;
         private $surname;
         private $first_name;
         private $phone_no;
@@ -17,6 +18,7 @@
         //methods
         public function __construct($surname, $first_name, $phone_no, $bank_name, $account_no) {
             $this->sn = count(self::$staffs)+1; /* +1 is to eliminate the zero */
+            $this->rank_id = $this->sn;
             $this->surname = $surname;
             $this->first_name = $first_name;
             $this->phone_no = $phone_no;
@@ -80,6 +82,10 @@
 
         public function getSerialNum() {
             return $this->sn;
+        }
+
+        public function getRank_id() {
+            return $this->rank_id;
         }
 
         public function getSurname() { /*methods are written in camel case*/

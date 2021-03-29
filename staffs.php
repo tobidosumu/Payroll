@@ -48,6 +48,7 @@ if(isset($_POST['submit'])){
               <thead>
                 <tr>
                   <th scope="col">SN</th>
+                  <th scope="col">RanK ID</th>
                   <th scope="col">Surname</th>
                   <th scope="col">First Name</th>
                   <th scope="col">Phone Number</th>
@@ -63,6 +64,7 @@ if(isset($_POST['submit'])){
                     foreach($staffs as $staff) {
                        echo "<tr>";
                        echo "<td>". $staff->getSerialNum(). "</td>";
+                       echo "<td>". $staff->getRank_id(). "</td>";
                        echo "<td>". $staff->getSurname(). "</td>";
                        echo "<td>". $staff->getFirst_name(). "</td>";
                        echo "<td>". $staff->getPhone_no(). "</td>";
